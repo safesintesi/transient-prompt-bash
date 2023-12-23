@@ -3,7 +3,7 @@ function lastcommand {
     history | tail -1 | cut -c 8-
 }
 function deleteprompt {
-    for i in $(seq $(($(echo "$PS1" | wc -l) + 1)));
+    for i in $(seq $(($(echo -ne "$PS1" | wc -l) + 1)));
     do
         tput cuu 1
         tput el
