@@ -3,11 +3,11 @@ function lastcommand {
     history | tail -1 | cut -c 8-
 }
 function deleteprompt {
-    for i in $(fgrep -o '\n' <<< $PS1'\n')
-    do
-        tput cuu 1
-        tput el
-    done
+    n=${PS1@P}
+    n=${n//[^$'\n']}
+    n=${#n}
+    tput cuu $((n + 1))
+    tput ed
 }
 
 DIR_PROMPT="\[$(tput setaf 6)\]\w"
